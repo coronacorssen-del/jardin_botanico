@@ -1,0 +1,2275 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardín Botánico Cobach 01 - La Paz, BCS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-dark: #1B5E20;
+            --primary-light: #4CAF50;
+            --secondary: #8BC34A;
+            --accent: #FFC107;
+            --accent-dark: #FFA000;
+            --light: #F8F9FA;
+            --light-green: #F1F8E9;
+            --text: #212121;
+            --text-light: #757575;
+            --white: #FFFFFF;
+            --sand: #D2B48C;
+            --path: #8B4513;
+            --sky: #87CEEB;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --box-shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        /* Header */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .main-header.scrolled {
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(5px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .logo-text span {
+            color: var(--accent-dark);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        }
+        
+        .start-tour-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: var(--text);
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .start-tour-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .start-tour-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .start-tour-btn:hover::before {
+            left: 100%;
+        }
+        
+        .floating-plants {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.9;
+            z-index: 1;
+            animation: float 8s ease-in-out infinite;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+        }
+        
+        .plant-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .plant-2 {
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+        
+        .plant-3 {
+            top: 40%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 6rem 5%;
+            background-color: var(--white);
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .about-image:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+        
+        /* Plants Section */
+        .plants-section {
+            padding: 6rem 5%;
+            background-color: var(--light-green);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plants-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%238BC34A" fill-opacity="0.05" d="M30,10L50,30L70,10L90,30L70,50L90,70L70,90L50,70L30,90L10,70L30,50L10,30L30,10Z"/></svg>');
+            background-size: 200px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .plants-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .plants-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+        
+        .plant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .plant-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .plant-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .plant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .plant-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .plant-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .plant-card:hover .plant-image img {
+            transform: scale(1.1);
+        }
+        
+        .plant-info {
+            padding: 1.8rem;
+        }
+        
+        .plant-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+        
+        .plant-info p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .read-more:hover {
+            background-color: var(--primary);
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
+        }
+        
+        .read-more i {
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover i {
+            transform: translateX(3px);
+        }
+        
+        /* Visit Section */
+        .visit-section {
+            padding: 6rem 5%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+        }
+        
+        .visit-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .visit-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .visit-text {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .visit-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .info-item {
+            margin-bottom: 1rem;
+        }
+        
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-item i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .visit-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--text);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .visit-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: white;
+            max-width: 900px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            transform: translateY(-50px);
+            transition: transform 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal-header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .modal-header h2 {
+            font-size: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .scientific-name {
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .close-modal:hover {
+            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .modal-body {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-image::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 30%);
+        }
+        
+        .description-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .language-tabs {
+            display: flex;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+            gap: 10px;
+        }
+        
+        .tab-btn {
+            padding: 0.7rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-light);
+            position: relative;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            background: rgba(139, 195, 74, 0.1);
+        }
+        
+        .tab-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .description {
+            margin-bottom: 1.5rem;
+        }
+        
+        .description h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .description p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .plant-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .fact-card {
+            background: rgba(139, 195, 74, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .fact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fact-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .fact-card h4 i {
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 4rem 5% 2rem;
+            position: relative;
+            clip-path: polygon(0 20px, 100% 0, 100% 100%, 0 100%);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .footer-logo-text span {
+            color: var(--accent);
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-links h3::after, .footer-contact h3::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item i {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.15);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: var(--text);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Animaciones */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .modal-body {
+                flex-direction: column;
+            }
+            
+            .modal-image {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .plant-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .modal-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .scientific-name {
+                font-size: 0.9rem;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+            
+            .tab-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .start-tour-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .floating-plants {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .plant-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .close-modal {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="./jardin.jpg" alt="Logo Jardín Botánico">
+            <div class="logo-text">Jardín <span>Botánico</span></div>
+        </div>
+        <nav class="nav-links">
+            <a href="#home">Inicio</a>
+            <a href="#about">Acerca de Nosotros</a>
+            <a href="#plants">Plantas</a>
+            <a href="#visit">Visítanos</a>
+            <a href="#contact">Contacto</a>
+        </nav>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Jardín Botánico Del Colegio de Bachillerato Plantel 01</h1>
+            <h2 class="hero-subtitle">Descubre como es la naturaleza de la que te rodeas</h2>
+            <p class="hero-description">
+                Unete a esta aventura en la cual aprederas lo hermosa que es toda la naturaleza que existe en La Paz. 
+                Un espacio horientado totalmente en la educación, con la ayuda del Cobach 01.
+            </p>
+            <button class="start-tour-btn" id="start-tour-btn">
+                <i class="fas fa-leaf"></i> Comenzar el viaje
+            </button>
+        </div>
+        
+        <img src="./cactus.avif" alt="Cactus decorativo" class="floating-plants plant-1">
+        <img src="./nopal.jpg" alt="Cactus decorativo" class="floating-plants plant-2">
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2 class="section-title">Acerca de nuestro jardín</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="./jardin.jpg" alt="Jardín Botánico Cobach 01">
+            </div>
+            <div class="about-text">
+                <h3>JARDÍN BOTÁNICO</h3>
+                <p>En el corazón del COBACH 01 florece el Jardín Botánico, un espacio concebido no solo para el estudio de la naturaleza, sino para el encuentro profundo con la esencia viva del desierto sudcaliforniano.</p>
+                <p>Este proyecto educativo nace del deseo de comprender, preservar y honrar la flora nativa de Baja California Sur, resguardando más de 150 especies vegetales que narran, en silencio, la historia de una tierra moldeada por el sol, el viento y la resiliencia. Muchas de ellas son especies endémicas, tesoros biológicos que existen únicamente en esta región y que convierten al jardín en un santuario de identidad y memoria natural.</p>
+                <p>Cada sendero y cada planta invitan a la contemplación y al aprendizaje, recordándonos que incluso en los paisajes más áridos florece la vida con una belleza serena, sabia y profundamente extraordinaria.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Plantas -->
+    <section class="plants-section" id="plants">
+        <div class="plants-container">
+            <h2 class="section-title">Nuestras Plantas</h2>
+            <p class="plants-subtitle">
+                Explora la colección botánica del COBACH 01, donde cada planta revela una historia silenciosa de adaptación, fortaleza y vida en el alma del desierto.
+            </p>
+            <div class="plant-grid">
+                <!-- Cardón -->
+                <div class="plant-card" data-plant="cardon">
+                    <div class="plant-image">
+                        <img src="./Cardón.webp" alt="Cardón">
+                    </div>
+                    <div class="plant-info">
+                        <h3>Cardón</h3>
+                        <p>El gigante del desierto mexicano</p>
+                        <button class="read-more">
+                            Más información<i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div> 
+                <!-- Viznaga -->
+                <div class="plant-card" data-plant="viznaga">
+                    <div class="plant-image">
+                        <img src="./Biznaga.jpg" alt="Viznaga">
+                    </div>
+                    <div class="plant-info">
+                        <h3>Biznaga</h3>
+                        <p>Cactus barril dorado</p>
+                        <button class="read-more">
+                            Más información<i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Nopal -->
+                <div class="plant-card" data-plant="nopal">
+                    <div class="plant-image">
+                        <img src="./Nopal.webp" alt="Nopal">
+                    </div>
+                    <div class="plant-info">
+                        <h3>Nopal</h3>
+                        <p>La planta que más representa a México</p>
+                        <button class="read-more">
+                            Más información<i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Pitahaya Dulce -->
+                <div class="plant-card" data-plant="pitahaya">
+                    <div class="plant-image">
+                        <img src="./pitaya.jpg" alt="Pitahaya Dulce">
+                    </div>
+                    <div class="plant-info">
+                        <h3>Pitahaya Dulce</h3>
+                        <p>Cacto del desierto famoso por sus frutos dulces y coloridos.</p>
+                        <button class="read-more">
+                            Más información<i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mezquite -->
+                <div class="plant-card" data-plant="mezquite">
+                    <div class="plant-image">
+                        <img src="./mezquite.jpg" alt="Mezquite">
+                    </div>
+                    <div class="plant-info">
+                        <h3>Mezquite</h3>
+                        <p>Árbol resistente que brinda sombra y vida al desierto.</p>
+                        <button class="read-more">
+                            Más información  <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Yuca -->
+                <div class="plant-card" data-plant="yucca">
+                    <div class="plant-image">
+                        <img src="./yuca.jpg" alt="Yuca">
+                    </div>
+                    <div class="plant-info">
+                        <h3>Yuca</h3>
+                        <p>Planta fuerte y elegante adaptada a climas áridos.</p>
+                        <button class="read-more">
+                            Más información <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Copal Blanco -->
+                <div class="plant-card" data-plant="copal">
+                    <div class="plant-image">
+                        <img src="copalblanco.jpg" alt="Copal Blanco">
+                    </div>
+                    <div class="plant-info">
+                        <h3>Copal Blanco</h3>
+                        <p>Árbol aromático apreciado por su resina ancestral. </p>
+                        <button class="read-more">
+                            Más información <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Choya -->
+                <div class="plant-card" data-plant="choya">
+                    <div class="plant-image">
+                        <img src="choya.jpg" alt="Choya">
+                    </div>
+                    <div class="plant-info">
+                        <h3>Choya</h3>
+                        <p>Cacto espinoso de gran resistencia y belleza silvestre.</p>
+                        <button class="read-more">
+                            Más información <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Section -->
+    <section class="visit-section" id="visit">
+        <div class="visit-container">
+            <h2 class="visit-title">Ven y Descubre Más Sobre Nuestro Jardín</h2>
+            <p class="visit-text">
+                El Jardín Botánico Cobach 01 está abierto al público y ofrece visitas guiadas, talleres educativos y eventos especiales durante todo el año. ¡Ven y descubre la belleza del desierto!
+            </p>
+            
+            <div class="visit-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i> Colegio de Bachilleres Plantel 01, La Paz, BCS
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i> Lunes a Viernes: 8:00 AM - 4:00 PM
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i> (612) 288 2484
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i> atracamofletes@gmail.com
+                </div>
+            </div>
+            
+            <a href="#" class="visit-btn">
+                <i class="fas fa-calendar-alt"></i> Agenda tu Visita
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="./jardin.jpg" alt="Logo Jardín Botánico">
+                    <div class="footer-logo-text">Jardín <span>Botánico</span></div>
+                </div>
+                <p>El Jardín Botánico del Cobach 01 es un proyecto educativo que busca preservar y dar a conocer la rica flora del desierto de Baja California Sur.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#about">Sobre Nosotros</a></li>
+                    <li><a href="#plants">Nuestras Plantas</a></li>
+                    <li><a href="#visit">Visítanos</a></li>
+                    <li><a href="#">Programas Educativos</a></li>
+                    <li><a href="#">Eventos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Colegio de Bachilleres Plantel 01, La Paz, Baja California Sur, México</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(612) 123-4567</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>jardinbotanico@cobach01.edu.mx</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2026 Jardín Botánico Del Cobach 01 - La Paz, BCS. Todos los derechos reservados.</p>
+            <p>Desarrollado por Ortega Beltrán Diego Salvador - Karlos Santiago Meza Gonzalez.</p>
+            <p>Corona Corssen Luis Angel - Cano Nava Gibran - Garcia Mora Jesus Alberto - Marquez Alvarado Cesar Rodrigo</p>
+            <p>Estudiantes del Cobach 01</p>
+        </div>
+    </footer>
+    
+    <!-- Modals for each plant -->
+    <!-- Cardón Modal -->
+    <div id="cardon-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cardón <span class="scientific-name">(Pachycereus pringlei)</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="217a3433-11b9-423f-9074-757a61aa53f0.jpg" alt="Cardón">
+                </div>
+                
+                <div class="description-container">
+                    <div class="language-tabs">
+                        <button class="tab-btn active" data-tab="es-cardon">Español</button>
+                        <button class="tab-btn" data-tab="en-cardon">English</button>
+                    </div>
+                    
+                    <div id="es-cardon" class="tab-content active">
+                        <div class="description">
+                            <h3>El gigante del desierto</h3>
+                            <p>El cardón es el cactus más grande del mundo, endémico de la península de Baja California. Puede alcanzar alturas de hasta 20 metros y vivir más de 300 años. Sus impresionantes brazos verticales son un símbolo icónico del paisaje desértico.</p>
+                            <p>Estos majestuosos cactus crecen muy lentamente, aproximadamente 1 cm por año durante sus primeros 10-15 años de vida. Su sistema radicular es extenso pero superficial, permitiéndole absorber rápidamente el agua de las escasas lluvias.</p>
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-ruler-vertical"></i> Tamaño</h4>
+                                    <p>Hasta 20 m de altura y 1 m de diámetro. Puede pesar más de 10 toneladas.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-map-marker-alt"></i> Hábitat</h4>
+                                    <p>Desiertos de Baja California y Sonora, desde el nivel del mar hasta 1000 m de altitud.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-calendar-alt"></i> Longevidad</h4>
+                                    <p>Puede vivir más de 300 años, siendo uno de los cactus más longevos del mundo.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-water"></i> Adaptaciones</h4>
+                                    <p>Almacena hasta 5 toneladas de agua en su interior para sobrevivir a largas sequías.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="en-cardon" class="tab-content">
+                        <div class="description">
+                            <h3>The Desert Giant</h3>
+                            <p>The cardón is the largest cactus in the world, endemic to the Baja California peninsula. It can reach heights of up to 20 meters and live more than 300 years. Its impressive vertical arms are an iconic symbol of the desert landscape.</p>
+                            <p>These majestic cacti grow very slowly, about 1 cm per year during their first 10-15 years of life. Their root system is extensive but shallow, allowing them to quickly absorb water from scarce rains.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-ruler-vertical"></i> Size</h4>
+                                    <p>Up to 20 m tall and 1 m in diameter. Can weigh more than 10 tons.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-map-marker-alt"></i> Habitat</h4>
+                                    <p>Deserts of Baja California and Sonora, from sea level to 1000 m altitude.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-calendar-alt"></i> Longevity</h4>
+                                    <p>Can live more than 300 years, being one of the longest-lived cacti in the world.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-water"></i> Adaptations</h4>
+                                    <p>Stores up to 5 tons of water inside to survive long droughts.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Viznaga Modal -->
+    <div id="viznaga-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Viznaga <span class="scientific-name">(Ferocactus spp.)</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="WhatsApp Image 2025-05-19 at 6.12.51 PM.jpeg" alt="Viznaga">
+                </div>
+                
+                <div class="description-container">
+                    <div class="language-tabs">
+                        <button class="tab-btn active" data-tab="es-viznaga">Español</button>
+                        <button class="tab-btn" data-tab="en-viznaga">English</button>
+                    </div>
+                    
+                    <div id="es-viznaga" class="tab-content active">
+                        <div class="description">
+                            <h3>El barril dorado</h3>
+                            <p>Las viznagas son cactus de forma globular o cilíndrica conocidos por sus impresionantes espinas coloridas. Son plantas de crecimiento lento que pueden vivir más de 100 años en su hábitat natural.</p>
+                            <p>Estos cactus tienen una forma distintiva de barril que les da su nombre común. Durante la primavera, producen hermosas flores en forma de corona en la parte superior de la planta, que luego dan lugar a frutos comestibles.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-sun"></i> Crecimiento</h4>
+                                    <p>Lento crecimiento, puede tardar 10 años en alcanzar 15 cm de diámetro.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-arrows-alt-v"></i> Dimensiones</h4>
+                                    <p>Hasta 3 m de altura y 60 cm de diámetro en su madurez.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-spa"></i> Floración</h4>
+                                    <p>Flores amarillas o rojas que aparecen en primavera y verano.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-shield-alt"></i> Defensas</h4>
+                                    <p>Espinas robustas que protegen la planta de depredadores y reducen la pérdida de agua.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="en-viznaga" class="tab-content">
+                        <div class="description">
+                            <h3>The Golden Barrel</h3>
+                            <p>Viznagas are globular or cylindrical cacti known for their impressive colorful spines. They are slow-growing plants that can live more than 100 years in their natural habitat.</p>
+                            <p>These cacti have a distinctive barrel shape that gives them their common name. During spring, they produce beautiful crown-shaped flowers at the top of the plant, which later give way to edible fruits.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-sun"></i> Growth</h4>
+                                    <p>Slow growth, may take 10 years to reach 15 cm in diameter.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-arrows-alt-v"></i> Dimensions</h4>
+                                    <p>Up to 3 m tall and 60 cm in diameter at maturity.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-spa"></i> Flowering</h4>
+                                    <p>Yellow or red flowers that appear in spring and summer.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-shield-alt"></i> Defenses</h4>
+                                    <p>Robust spines that protect the plant from predators and reduce water loss.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Nopal Modal -->
+    <div id="nopal-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nopal <span class="scientific-name">(Opuntia spp.)</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="aabf4e26-a12c-472e-bf76-3e1ccd9dc1ab.jpg" alt="Nopal">
+                </div>
+                
+                <div class="description-container">
+                    <div class="language-tabs">
+                        <button class="tab-btn active" data-tab="es-nopal">Español</button>
+                        <button class="tab-btn" data-tab="en-nopal">English</button>
+                    </div>
+                    
+                    <div id="es-nopal" class="tab-content active">
+                        <div class="description">
+                            <h3>El cactus comestible</h3>
+                            <p>El nopal es uno de los símbolos más reconocidos de México, tanto por su importancia ecológica como cultural. Sus cladodios (palas) son ricos en nutrientes y han formado parte de la dieta mexicana desde tiempos prehispánicos.</p>
+                            <p>Además de su valor alimenticio, el nopal tiene propiedades medicinales y se utiliza en la producción de cosméticos. Es una planta extremadamente resistente que puede sobrevivir en condiciones de sequía extrema.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-utensils"></i> Usos culinarios</h4>
+                                    <p>Se consumen sus palas jóvenes (nopalitos) y sus frutos (tunas). Rico en fibra, vitaminas y minerales.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-clinic-medical"></i> Propiedades</h4>
+                                    <p>Reduce niveles de glucosa, colesterol y tiene efecto antiinflamatorio.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-seedling"></i> Cultivo</h4>
+                                    <p>Se propaga fácilmente por esquejes. Crece en suelos pobres y requiere poca agua.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-history"></i> Historia</h4>
+                                    <p>Aparece en el escudo nacional mexicano como símbolo de resistencia y fortaleza.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="en-nopal" class="tab-content">
+                        <div class="description">
+                            <h3>The Edible Cactus</h3>
+                            <p>The nopal is one of the most recognized symbols of Mexico, both for its ecological and cultural importance. Its cladodes (pads) are rich in nutrients and have been part of the Mexican diet since pre-Hispanic times.</p>
+                            <p>In addition to its food value, the nopal has medicinal properties and is used in the production of cosmetics. It is an extremely resistant plant that can survive in extreme drought conditions.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-utensils"></i> Culinary uses</h4>
+                                    <p>Its young pads (nopalitos) and fruits (prickly pears) are consumed. Rich in fiber, vitamins and minerals.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-clinic-medical"></i> Properties</h4>
+                                    <p>Reduces glucose and cholesterol levels and has anti-inflammatory effect.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-seedling"></i> Cultivation</h4>
+                                    <p>Easily propagated by cuttings. Grows in poor soils and requires little water.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-history"></i> History</h4>
+                                    <p>Appears on the Mexican national coat of arms as a symbol of resistance and strength.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pitahaya Modal -->
+    <div id="pitahaya-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Pitahaya Dulce <span class="scientific-name">(Stenocereus thurberi)</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="64dfc147-aa88-4e02-a486-56f45a81b579.jpg" alt="Pitahaya Dulce">
+                </div>
+                
+                <div class="description-container">
+                    <div class="language-tabs">
+                        <button class="tab-btn active" data-tab="es-pitahaya">Español</button>
+                        <button class="tab-btn" data-tab="en-pitahaya">English</button>
+                    </div>
+                    
+                    <div id="es-pitahaya" class="tab-content active">
+                        <div class="description">
+                            <h3>Fruta del dragón del desierto</h3>
+                            <p>La pitahaya dulce es un cactus columnar que produce una de las frutas más exóticas y deliciosas del desierto. Sus flores nocturnas son polinizadas por murciélagos y mariposas nocturnas, y solo abren por una noche.</p>
+                            <p>El fruto de la pitahaya es rico en antioxidantes, vitamina C y fibra. Su pulpa puede ser blanca, roja o morada, con pequeñas semillas negras comestibles que recuerdan al kiwi.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-moon"></i> Floración</h4>
+                                    <p>Flores blancas nocturnas que solo duran una noche. Polinizadas por murciélagos.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-apple-alt"></i> Fruto</h4>
+                                    <p>Madura en verano. Piel roja o amarilla con pulpa dulce y semillas pequeñas.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-heartbeat"></i> Beneficios</h4>
+                                    <p>Alto contenido de antioxidantes, mejora la digestión y refuerza el sistema inmune.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-industry"></i> Cultivo</h4>
+                                    <p>Se cosecha manualmente. Requiere climas cálidos y suelos bien drenados.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="en-pitahaya" class="tab-content">
+                        <div class="description">
+                            <h3>Desert Dragon Fruit</h3>
+                            <p>The sweet pitahaya is a columnar cactus that produces one of the most exotic and delicious fruits of the desert. Its nocturnal flowers are pollinated by bats and night butterflies, and only open for one night.</p>
+                            <p>The pitahaya fruit is rich in antioxidants, vitamin C and fiber. Its pulp can be white, red or purple, with small edible black seeds reminiscent of kiwi.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-moon"></i> Flowering</h4>
+                                    <p>Nocturnal white flowers that last only one night. Pollinated by bats.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-apple-alt"></i> Fruit</h4>
+                                    <p>Ripens in summer. Red or yellow skin with sweet pulp and small seeds.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-heartbeat"></i> Benefits</h4>
+                                    <p>High in antioxidants, improves digestion and boosts the immune system.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-industry"></i> Cultivation</h4>
+                                    <p>Harvested manually. Requires warm climates and well-drained soils.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mezquite Modal -->
+    <div id="mezquite-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Mezquite <span class="scientific-name">(Prosopis spp.)</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="8d905d65-46a2-4f76-96ae-9c691eae6c45.jpg" alt="Mezquite">
+                </div>
+                
+                <div class="description-container">
+                    <div class="language-tabs">
+                        <button class="tab-btn active" data-tab="es-mezquite">Español</button>
+                        <button class="tab-btn" data-tab="en-mezquite">English</button>
+                    </div>
+                    
+                    <div id="es-mezquite" class="tab-content active">
+                        <div class="description">
+                            <h3>El árbol de la miel</h3>
+                            <p>El mezquite es un árbol emblemático de las zonas áridas, conocido por su resistencia y múltiples usos. Sus raíces profundas le permiten acceder a fuentes de agua subterránea, lo que lo hace invaluable en ecosistemas desérticos.</p>
+                            <p>Sus vainas dulces son comestibles y se utilizan para hacer harina, atole y otros productos alimenticios. La madera de mezquite es muy apreciada para carbón y muebles por su dureza y aroma característico.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-tree"></i> Características</h4>
+                                    <p>Árbol de 5-10 m de altura, con hojas pequeñas y espinas. Raíces profundas (hasta 50 m).</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-bread-slice"></i> Usos alimenticios</h4>
+                                    <p>Harina de sus vainas rica en proteínas. Endulzante natural con bajo índice glucémico.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-fire"></i> Combustible</h4>
+                                    <p>Madera excelente para carbón y leña. Quema lentamente con alto poder calorífico.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-leaf"></i> Ecología</h4>
+                                    <p>Fija nitrógeno en el suelo, mejorando la fertilidad en zonas áridas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="en-mezquite" class="tab-content">
+                        <div class="description">
+                            <h3>The Honey Tree</h3>
+                            <p>Mesquite is an emblematic tree of arid zones, known for its resistance and multiple uses. Its deep roots allow it to access underground water sources, making it invaluable in desert ecosystems.</p>
+                            <p>Its sweet pods are edible and used to make flour, atole and other food products. Mesquite wood is highly prized for charcoal and furniture due to its hardness and characteristic aroma.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-tree"></i> Characteristics</h4>
+                                    <p>Tree 5-10 m tall, with small leaves and thorns. Deep roots (up to 50 m).</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-bread-slice"></i> Food uses</h4>
+                                    <p>Flour from its pods rich in proteins. Natural sweetener with low glycemic index.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-fire"></i> Fuel</h4>
+                                    <p>Excellent wood for charcoal and firewood. Burns slowly with high calorific value.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-leaf"></i> Ecology</h4>
+                                    <p>Fixes nitrogen in the soil, improving fertility in arid areas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Yuca Modal -->
+    <div id="yucca-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Yuca <span class="scientific-name">(Yucca spp.)</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="images.jfif" alt="Yuca">
+                </div>
+                
+                <div class="description-container">
+                    <div class="language-tabs">
+                        <button class="tab-btn active" data-tab="es-yucca">Español</button>
+                        <button class="tab-btn" data-tab="en-yucca">English</button>
+                    </div>
+                    
+                    <div id="es-yucca" class="tab-content active">
+                        <div class="description">
+                            <h3>Planta de hojas espadas</h3>
+                            <p>La yuca es una planta perenne reconocible por sus hojas largas y puntiagudas que forman rosetas. Es una especie clave en los ecosistemas desérticos, ya que tiene una relación simbiótica con la polilla de la yuca, su única polinizadora.</p>
+                            <p>Sus raíces, tallos y flores han sido utilizados tradicionalmente por los pueblos indígenas como fuente de alimento, fibra y jabón. Las fibras de sus hojas son extraordinariamente resistentes y se usan para elaborar cuerdas y cestos.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-bug"></i> Simbiosis</h4>
+                                    <p>Relación exclusiva con la polilla de la yuca (Tegeticula spp.), su única polinizadora.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-utensils"></i> Usos tradicionales</h4>
+                                    <p>Flores y frutos comestibles. Raíces usadas como jabón natural por sus saponinas.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-snowflake"></i> Resistencia</h4>
+                                    <p>Sobrevive temperaturas extremas (-20°C a 50°C) y largos periodos de sequía.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-industry"></i> Aplicaciones</h4>
+                                    <p>Fibra para textiles, cuerdas y papel. Extractos usados en cosmética y farmacéutica.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="en-yucca" class="tab-content">
+                        <div class="description">
+                            <h3>Sword-leaf Plant</h3>
+                            <p>Yucca is a perennial plant recognizable by its long, pointed leaves that form rosettes. It is a keystone species in desert ecosystems, as it has a symbiotic relationship with the yucca moth, its only pollinator.</p>
+                            <p>Its roots, stems and flowers have been traditionally used by indigenous peoples as a source of food, fiber and soap. The fibers from its leaves are extraordinarily strong and are used to make ropes and baskets.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-bug"></i> Symbiosis</h4>
+                                    <p>Exclusive relationship with the yucca moth (Tegeticula spp.), its only pollinator.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-utensils"></i> Traditional uses</h4>
+                                    <p>Edible flowers and fruits. Roots used as natural soap due to their saponins.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-snowflake"></i> Resistance</h4>
+                                    <p>Survives extreme temperatures (-20°C to 50°C) and long drought periods.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-industry"></i> Applications</h4>
+                                    <p>Fiber for textiles, ropes and paper. Extracts used in cosmetics and pharmaceuticals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Copal Modal -->
+    <div id="copal-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Copal Blanco <span class="scientific-name">(Bursera spp.)</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="e63cd8e9-c689-48b7-be53-f822fd28923c.jpg" alt="Copal Blanco">
+                </div>
+                
+                <div class="description-container">
+                    <div class="language-tabs">
+                        <button class="tab-btn active" data-tab="es-copal">Español</button>
+                        <button class="tab-btn" data-tab="en-copal">English</button>
+                    </div>
+                    
+                    <div id="es-copal" class="tab-content active">
+                        <div class="description">
+                            <h3>Árbol sagrado</h3>
+                            <p>El copal blanco es un árbol pequeño a mediano conocido por su aromática resina que se ha utilizado en ceremonias religiosas y medicinales desde la época prehispánica. Su corteza se desprende en láminas parecidas al papel, revelando una superficie lisa y verdosa.</p>
+                            <p>En la medicina tradicional, la resina de copal se usa para tratar problemas respiratorios y reumáticos. Los pueblos indígenas consideran que su humo purifica el ambiente y facilita la comunicación con lo divino.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-fire"></i> Resina</h4>
+                                    <p>Se extrae haciendo incisiones en el tronco. Usada como incienso natural con aroma balsámico.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-history"></i> Tradición</h4>
+                                    <p>Usado en rituales desde hace más de 3,000 años por culturas mesoamericanas.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-clinic-medical"></i> Medicina</h4>
+                                    <p>Antiséptico, antiinflamatorio y expectorante. Alivia dolor de muelas y articulaciones.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-tree"></i> Ecología</h4>
+                                    <p>Importante en la regeneración de bosques secos. Sus frutos alimentan aves y mamíferos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="en-copal" class="tab-content">
+                        <div class="description">
+                            <h3>Sacred Tree</h3>
+                            <p>White copal is a small to medium-sized tree known for its aromatic resin that has been used in religious and medicinal ceremonies since pre-Hispanic times. Its bark peels off in paper-like sheets, revealing a smooth, greenish surface.</p>
+                            <p>In traditional medicine, copal resin is used to treat respiratory and rheumatic problems. Indigenous peoples believe its smoke purifies the environment and facilitates communication with the divine.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-fire"></i> Resin</h4>
+                                    <p>Extracted by making incisions in the trunk. Used as natural incense with balsamic aroma.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-history"></i> Tradition</h4>
+                                    <p>Used in rituals for over 3,000 years by Mesoamerican cultures.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-clinic-medical"></i> Medicine</h4>
+                                    <p>Antiseptic, anti-inflammatory and expectorant. Relieves toothache and joint pain.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-tree"></i> Ecology</h4>
+                                    <p>Important in the regeneration of dry forests. Its fruits feed birds and mammals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Choya Modal -->
+    <div id="choya-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Choya <span class="scientific-name">(Cylindropuntia spp.)</span></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="./choya.jpg" alt="Choya">
+                </div>
+                
+                <div class="description-container">
+                    <div class="language-tabs">
+                        <button class="tab-btn active" data-tab="es-choya">Español</button>
+                        <button class="tab-btn" data-tab="en-choya">English</button>
+                    </div>
+                    
+                    <div id="es-choya" class="tab-content active">
+                        <div class="description">
+                            <h3>Cactus saltarín</h3>
+                            <p>La choya es un cactus caracterizado por sus segmentos cilíndricos cubiertos de espinas ganchudas que se desprenden fácilmente. Estas espinas tienen microganchos que hacen difícil su extracción una vez que se clavan en la piel.</p>
+                            <p>Este cactus tiene una estrategia reproductiva única: sus segmentos se desprenden fácilmente y pueden enraizar al caer al suelo, lo que le ha valido el apodo de "cactus saltarín". También produce flores vistosas de colores brillantes.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-exclamation-triangle"></i> Defensas</h4>
+                                    <p>Espinas con microganchos que se clavan profundamente y son difíciles de remover.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-seedling"></i> Reproducción</h4>
+                                    <p>Se propaga vegetativamente cuando sus segmentos caen y enraízan (cactus saltarín).</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-spa"></i> Floración</h4>
+                                    <p>Flores magenta, amarillas o rojas que atraen polinizadores en primavera.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-home"></i> Hábitat</h4>
+                                    <p>Forma densas colonias que proporcionan refugio a pequeños animales del desierto.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="en-choya" class="tab-content">
+                        <div class="description">
+                            <h3>Jumping Cactus</h3>
+                            <p>Cholla is a cactus characterized by its cylindrical segments covered with barbed spines that detach easily. These spines have micro-barbs that make them difficult to remove once embedded in the skin.</p>
+                            <p>This cactus has a unique reproductive strategy: its segments detach easily and can root when they fall to the ground, earning it the nickname "jumping cactus". It also produces showy flowers in bright colors.</p>
+                            
+                            <div class="plant-facts">
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-exclamation-triangle"></i> Defenses</h4>
+                                    <p>Spines with micro-barbs that embed deeply and are difficult to remove.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-seedling"></i> Reproduction</h4>
+                                    <p>Propagates vegetatively when its segments fall and root (jumping cactus).</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-spa"></i> Flowering</h4>
+                                    <p>Magenta, yellow or red flowers that attract pollinators in spring.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <h4><i class="fas fa-home"></i> Habitat</h4>
+                                    <p>Forms dense colonies that provide shelter for small desert animals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced plant data with more details
+        const plantData = {
+            cardon: {
+                name: "Cardón",
+                sciName: "Pachycereus pringlei",
+                esDesc: {
+                    title: "El gigante del desierto",
+                    content: `<p>El cardón es el cactus más grande del mundo, endémico de la península de Baja California. Puede alcanzar alturas de hasta 20 metros y vivir más de 300 años. Sus impresionantes brazos verticales son un símbolo icónico del paisaje desértico.</p>
+                    <p>Estos majestuosos cactus crecen muy lentamente, aproximadamente 1 cm por año durante sus primeros 10-15 años de vida. Su sistema radicular es extenso pero superficial, permitiéndole absorber rápidamente el agua de las escasas lluvias.</p>`,
+                    facts: [
+                        {icon: "fas fa-ruler-vertical", title: "Tamaño", content: "Hasta 20 m de altura y 1 m de diámetro. Puede pesar más de 10 toneladas."},
+                        {icon: "fas fa-map-marker-alt", title: "Hábitat", content: "Desiertos de Baja California y Sonora, desde el nivel del mar hasta 1000 m de altitud."},
+                        {icon: "fas fa-calendar-alt", title: "Longevidad", content: "Puede vivir más de 300 años, siendo uno de los cactus más longevos del mundo."},
+                        {icon: "fas fa-water", title: "Adaptaciones", content: "Almacena hasta 5 toneladas de agua en su interior para sobrevivir a largas sequías."}
+                    ]
+                },
+                enDesc: {
+                    title: "The Desert Giant",
+                    content: `<p>The cardón is the largest cactus in the world, endemic to the Baja California peninsula. It can reach heights of up to 20 meters and live more than 300 years. Its impressive vertical arms are an iconic symbol of the desert landscape.</p>
+                    <p>These majestic cacti grow very slowly, about 1 cm per year during their first 10-15 years of life. Their root system is extensive but shallow, allowing them to quickly absorb water from scarce rains.</p>`,
+                    facts: [
+                        {icon: "fas fa-ruler-vertical", title: "Size", content: "Up to 20 m tall and 1 m in diameter. Can weigh more than 10 tons."},
+                        {icon: "fas fa-map-marker-alt", title: "Habitat", content: "Deserts of Baja California and Sonora, from sea level to 1000 m altitude."},
+                        {icon: "fas fa-calendar-alt", title: "Longevity", content: "Can live more than 300 years, being one of the longest-lived cacti in the world."},
+                        {icon: "fas fa-water", title: "Adaptations", content: "Stores up to 5 tons of water inside to survive long droughts."}
+                    ]
+                },
+                img: "217a3433-11b9-423f-9074-757a61aa53f0.jpg"
+            },
+            viznaga: {
+                name: "Viznaga",
+                sciName: "Ferocactus spp.",
+                esDesc: {
+                    title: "El barril dorado",
+                    content: `<p>Las viznagas son cactus de forma globular o cilíndrica conocidos por sus impresionantes espinas coloridas. Son plantas de crecimiento lento que pueden vivir más de 100 años en su hábitat natural.</p>
+                    <p>Estos cactus tienen una forma distintiva de barril que les da su nombre común. Durante la primavera, producen hermosas flores en forma de corona en la parte superior de la planta, que luego dan lugar a frutos comestibles.</p>`,
+                    facts: [
+                        {icon: "fas fa-sun", title: "Crecimiento", content: "Lento crecimiento, puede tardar 10 años en alcanzar 15 cm de diámetro."},
+                        {icon: "fas fa-arrows-alt-v", title: "Dimensiones", content: "Hasta 3 m de altura y 60 cm de diámetro en su madurez."},
+                        {icon: "fas fa-spa", title: "Floración", content: "Flores amarillas o rojas que aparecen en primavera y verano."},
+                        {icon: "fas fa-shield-alt", title: "Defensas", content: "Espinas robustas que protegen la planta de depredadores y reducen la pérdida de agua."}
+                    ]
+                },
+                enDesc: {
+                    title: "The Golden Barrel",
+                    content: `<p>Viznagas are globular or cylindrical cacti known for their impressive colorful spines. They are slow-growing plants that can live more than 100 years in their natural habitat.</p>
+                    <p>These cacti have a distinctive barrel shape that gives them their common name. During spring, they produce beautiful crown-shaped flowers at the top of the plant, which later give way to edible fruits.</p>`,
+                    facts: [
+                        {icon: "fas fa-sun", title: "Growth", content: "Slow growth, may take 10 years to reach 15 cm in diameter."},
+                        {icon: "fas fa-arrows-alt-v", title: "Dimensions", content: "Up to 3 m tall and 60 cm in diameter at maturity."},
+                        {icon: "fas fa-spa", title: "Flowering", content: "Yellow or red flowers that appear in spring and summer."},
+                        {icon: "fas fa-shield-alt", title: "Defenses", content: "Robust spines that protect the plant from predators and reduce water loss."}
+                    ]
+                },
+                img: "WhatsApp Image 2025-05-19 at 6.12.51 PM.jpeg"
+            },
+            nopal: {
+                name: "Nopal",
+                sciName: "Opuntia spp.",
+                esDesc: {
+                    title: "El cactus comestible",
+                    content: `<p>El nopal es uno de los símbolos más reconocidos de México, tanto por su importancia ecológica como cultural. Sus cladodios (palas) son ricos en nutrientes y han formado parte de la dieta mexicana desde tiempos prehispánicos.</p>
+                    <p>Además de su valor alimenticio, el nopal tiene propiedades medicinales y se utiliza en la producción de cosméticos. Es una planta extremadamente resistente que puede sobrevivir en condiciones de sequía extrema.</p>`,
+                    facts: [
+                        {icon: "fas fa-utensils", title: "Usos culinarios", content: "Se consumen sus palas jóvenes (nopalitos) y sus frutos (tunas). Rico en fibra, vitaminas y minerales."},
+                        {icon: "fas fa-clinic-medical", title: "Propiedades", content: "Reduce niveles de glucosa, colesterol y tiene efecto antiinflamatorio."},
+                        {icon: "fas fa-seedling", title: "Cultivo", content: "Se propaga fácilmente por esquejes. Crece en suelos pobres y requiere poca agua."},
+                        {icon: "fas fa-history", title: "Historia", content: "Aparece en el escudo nacional mexicano como símbolo de resistencia y fortaleza."}
+                    ]
+                },
+                enDesc: {
+                    title: "The Edible Cactus",
+                    content: `<p>The nopal is one of the most recognized symbols of Mexico, both for its ecological and cultural importance. Its cladodes (pads) are rich in nutrients and have been part of the Mexican diet since pre-Hispanic times.</p>
+                    <p>In addition to its food value, the nopal has medicinal properties and is used in the production of cosmetics. It is an extremely resistant plant that can survive in extreme drought conditions.</p>`,
+                    facts: [
+                        {icon: "fas fa-utensils", title: "Culinary uses", content: "Its young pads (nopalitos) and fruits (prickly pears) are consumed. Rich in fiber, vitamins and minerals."},
+                        {icon: "fas fa-clinic-medical", title: "Properties", content: "Reduces glucose and cholesterol levels and has anti-inflammatory effect."},
+                        {icon: "fas fa-seedling", title: "Cultivation", content: "Easily propagated by cuttings. Grows in poor soils and requires little water."},
+                        {icon: "fas fa-history", title: "History", content: "Appears on the Mexican national coat of arms as a symbol of resistance and strength."}
+                    ]
+                },
+                img: "aabf4e26-a12c-472e-bf76-3e1ccd9dc1ab.jpg"
+            },
+            pitahaya: {
+                name: "Pitahaya Dulce",
+                sciName: "Stenocereus thurberi",
+                esDesc: {
+                    title: "Fruta del dragón del desierto",
+                    content: `<p>La pitahaya dulce es un cactus columnar que produce una de las frutas más exóticas y deliciosas del desierto. Sus flores nocturnas son polinizadas por murciélagos y mariposas nocturnas, y solo abren por una noche.</p>
+                    <p>El fruto de la pitahaya es rico en antioxidantes, vitamina C y fibra. Su pulpa puede ser blanca, roja o morada, con pequeñas semillas negras comestibles que recuerdan al kiwi.</p>`,
+                    facts: [
+                        {icon: "fas fa-moon", title: "Floración", content: "Flores blancas nocturnas que solo duran una noche. Polinizadas por murciélagos."},
+                        {icon: "fas fa-apple-alt", title: "Fruto", content: "Madura en verano. Piel roja o amarilla con pulpa dulce y semillas pequeñas."},
+                        {icon: "fas fa-heartbeat", title: "Beneficios", content: "Alto contenido de antioxidantes, mejora la digestión y refuerza el sistema inmune."},
+                        {icon: "fas fa-industry", title: "Cultivo", content: "Se cosecha manualmente. Requiere climas cálidos y suelos bien drenados."}
+                    ]
+                },
+                enDesc: {
+                    title: "Desert Dragon Fruit",
+                    content: `<p>The sweet pitahaya is a columnar cactus that produces one of the most exotic and delicious fruits of the desert. Its nocturnal flowers are pollinated by bats and night butterflies, and only open for one night.</p>
+                    <p>The pitahaya fruit is rich in antioxidants, vitamin C and fiber. Its pulp can be white, red or purple, with small edible black seeds reminiscent of kiwi.</p>`,
+                    facts: [
+                        {icon: "fas fa-moon", title: "Flowering", content: "Nocturnal white flowers that last only one night. Pollinated by bats."},
+                        {icon: "fas fa-apple-alt", title: "Fruit", content: "Ripens in summer. Red or yellow skin with sweet pulp and small seeds."},
+                        {icon: "fas fa-heartbeat", title: "Benefits", content: "High in antioxidants, improves digestion and boosts the immune system."},
+                        {icon: "fas fa-industry", title: "Cultivation", content: "Harvested manually. Requires warm climates and well-drained soils."}
+                    ]
+                },
+                img: "64dfc147-aa88-4e02-a486-56f45a81b579.jpg"
+            },
+            mezquite: {
+                name: "Mezquite",
+                sciName: "Prosopis spp.",
+                esDesc: {
+                    title: "El árbol de la miel",
+                    content: `<p>El mezquite es un árbol emblemático de las zonas áridas, conocido por su resistencia y múltiples usos. Sus raíces profundas le permiten acceder a fuentes de agua subterránea, lo que lo hace invaluable en ecosistemas desérticos.</p>
+                    <p>Sus vainas dulces son comestibles y se utilizan para hacer harina, atole y otros productos alimenticios. La madera de mezquite es muy apreciada para carbón y muebles por su dureza y aroma característico.</p>`,
+                    facts: [
+                        {icon: "fas fa-tree", title: "Características", content: "Árbol de 5-10 m de altura, con hojas pequeñas y espinas. Raíces profundas (hasta 50 m)."},
+                        {icon: "fas fa-bread-slice", title: "Usos alimenticios", content: "Harina de sus vainas rica en proteínas. Endulzante natural con bajo índice glucémico."},
+                        {icon: "fas fa-fire", title: "Combustible", content: "Madera excelente para carbón y leña. Quema lentamente con alto poder calorífico."},
+                        {icon: "fas fa-leaf", title: "Ecología", content: "Fija nitrógeno en el suelo, mejorando la fertilidad en zonas áridas."}
+                    ]
+                },
+                enDesc: {
+                    title: "The Honey Tree",
+                    content: `<p>Mesquite is an emblematic tree of arid zones, known for its resistance and multiple uses. Its deep roots allow it to access underground water sources, making it invaluable in desert ecosystems.</p>
+                    <p>Its sweet pods are edible and used to make flour, atole and other food products. Mesquite wood is highly prized for charcoal and furniture due to its hardness and characteristic aroma.</p>`,
+                    facts: [
+                        {icon: "fas fa-tree", title: "Characteristics", content: "Tree 5-10 m tall, with small leaves and thorns. Deep roots (up to 50 m)."},
+                        {icon: "fas fa-bread-slice", title: "Food uses", content: "Flour from its pods rich in proteins. Natural sweetener with low glycemic index."},
+                        {icon: "fas fa-fire", title: "Fuel", content: "Excellent wood for charcoal and firewood. Burns slowly with high calorific value."},
+                        {icon: "fas fa-leaf", title: "Ecology", content: "Fixes nitrogen in the soil, improving fertility in arid areas."}
+                    ]
+                },
+                img: "8d905d65-46a2-4f76-96ae-9c691eae6c45.jpg"
+            },
+            yucca: {
+                name: "Yuca",
+                sciName: "Yucca spp.",
+                esDesc: {
+                    title: "Planta de hojas espadas",
+                    content: `<p>La yuca es una planta perenne reconocible por sus hojas largas y puntiagudas que forman rosetas. Es una especie clave en los ecosistemas desérticos, ya que tiene una relación simbiótica con la polilla de la yuca, su única polinizadora.</p>
+                    <p>Sus raíces, tallos y flores han sido utilizados tradicionalmente por los pueblos indígenas como fuente de alimento, fibra y jabón. Las fibras de sus hojas son extraordinariamente resistentes y se usan para elaborar cuerdas y cestos.</p>`,
+                    facts: [
+                        {icon: "fas fa-bug", title: "Simbiosis", content: "Relación exclusiva con la polilla de la yuca (Tegeticula spp.), su única polinizadora."},
+                        {icon: "fas fa-utensils", title: "Usos tradicionales", content: "Flores y frutos comestibles. Raíces usadas como jabón natural por sus saponinas."},
+                        {icon: "fas fa-snowflake", title: "Resistencia", content: "Sobrevive temperaturas extremas (-20°C a 50°C) y largos periodos de sequía."},
+                        {icon: "fas fa-industry", title: "Aplicaciones", content: "Fibra para textiles, cuerdas y papel. Extractos usados en cosmética y farmacéutica."}
+                    ]
+                },
+                enDesc: {
+                    title: "Sword-leaf Plant",
+                    content: `<p>Yucca is a perennial plant recognizable by its long, pointed leaves that form rosettes. It is a keystone species in desert ecosystems, as it has a symbiotic relationship with the yucca moth, its only pollinator.</p>
+                    <p>Its roots, stems and flowers have been traditionally used by indigenous peoples as a source of food, fiber and soap. The fibers from its leaves are extraordinarily strong and are used to make ropes and baskets.</p>`,
+                    facts: [
+                        {icon: "fas fa-bug", title: "Symbiosis", content: "Exclusive relationship with the yucca moth (Tegeticula spp.), its only pollinator."},
+                        {icon: "fas fa-utensils", title: "Traditional uses", content: "Edible flowers and fruits. Roots used as natural soap due to their saponins."},
+                        {icon: "fas fa-snowflake", title: "Resistance", content: "Survives extreme temperatures (-20°C to 50°C) and long drought periods."},
+                        {icon: "fas fa-industry", title: "Applications", content: "Fiber for textiles, ropes and paper. Extracts used in cosmetics and pharmaceuticals."}
+                    ]
+                },
+                img: "images.jfif"
+            },
+            copal: {
+                name: "Copal Blanco",
+                sciName: "Bursera spp.",
+                esDesc: {
+                    title: "Árbol sagrado",
+                    content: `<p>El copal blanco es un árbol pequeño a mediano conocido por su aromática resina que se ha utilizado en ceremonias religiosas y medicinales desde la época prehispánica. Su corteza se desprende en láminas parecidas al papel, revelando una superficie lisa y verdosa.</p>
+                    <p>En la medicina tradicional, la resina de copal se usa para tratar problemas respiratorios y reumáticos. Los pueblos indígenas consideran que su humo purifica el ambiente y facilita la comunicación con lo divino.</p>`,
+                    facts: [
+                        {icon: "fas fa-fire", title: "Resina", content: "Se extrae haciendo incisiones en el tronco. Usada como incienso natural con aroma balsámico."},
+                        {icon: "fas fa-history", title: "Tradición", content: "Usado en rituales desde hace más de 3,000 años por culturas mesoamericanas."},
+                        {icon: "fas fa-clinic-medical", title: "Medicina", content: "Antiséptico, antiinflamatorio y expectorante. Alivia dolor de muelas y articulaciones."},
+                        {icon: "fas fa-tree", title: "Ecología", content: "Importante en la regeneración de bosques secos. Sus frutos alimentan aves y mamíferos."}
+                    ]
+                },
+                enDesc: {
+                    title: "Sacred Tree",
+                    content: `<p>White copal is a small to medium-sized tree known for its aromatic resin that has been used in religious and medicinal ceremonies since pre-Hispanic times. Its bark peels off in paper-like sheets, revealing a smooth, greenish surface.</p>
+                    <p>In traditional medicine, copal resin is used to treat respiratory and rheumatic problems. Indigenous peoples believe its smoke purifies the environment and facilitates communication with the divine.</p>`,
+                    facts: [
+                        {icon: "fas fa-fire", title: "Resin", content: "Extracted by making incisions in the trunk. Used as natural incense with balsamic aroma."},
+                        {icon: "fas fa-history", title: "Tradition", content: "Used in rituals for over 3,000 years by Mesoamerican cultures."},
+                        {icon: "fas fa-clinic-medical", title: "Medicine", content: "Antiseptic, anti-inflammatory and expectorant. Relieves toothache and joint pain."},
+                        {icon: "fas fa-tree", title: "Ecology", content: "Important in the regeneration of dry forests. Its fruits feed birds and mammals."}
+                    ]
+                },
+                img: "e63cd8e9-c689-48b7-be53-f822fd28923c.jpg"
+            },
+            choya: {
+                name: "Choya",
+                sciName: "Cylindropuntia spp.",
+                esDesc: {
+                    title: "Cactus saltarín",
+                    content: `<p>La choya es un cactus caracterizado por sus segmentos cilíndricos cubiertos de espinas ganchudas que se desprenden fácilmente. Estas espinas tienen microganchos que hacen difícil su extracción una vez que se clavan en la piel.</p>
+                    <p>Este cactus tiene una estrategia reproductiva única: sus segmentos se desprenden fácilmente y pueden enraizar al caer al suelo, lo que le ha valido el apodo de "cactus saltarín". También produce flores vistosas de colores brillantes.</p>`,
+                    facts: [
+                        {icon: "fas fa-exclamation-triangle", title: "Defensas", content: "Espinas con microganchos que se clavan profundamente y son difíciles de remover."},
+                        {icon: "fas fa-seedling", title: "Reproducción", content: "Se propaga vegetativamente cuando sus segmentos caen y enraízan (cactus saltarín)."},
+                        {icon: "fas fa-spa", title: "Floración", content: "Flores magenta, amarillas o rojas que atraen polinizadores en primavera."},
+                        {icon: "fas fa-home", title: "Hábitat", content: "Forma densas colonias que proporcionan refugio a pequeños animales del desierto."}
+                    ]
+                },
+                enDesc: {
+                    title: "Jumping Cactus",
+                    content: `<p>Cholla is a cactus characterized by its cylindrical segments covered with barbed spines that detach easily. These spines have micro-barbs that make them difficult to remove once embedded in the skin.</p>
+                    <p>This cactus has a unique reproductive strategy: its segments detach easily and can root when they fall to the ground, earning it the nickname "jumping cactus". It also produces showy flowers in bright colors.</p>`,
+                    facts: [
+                        {icon: "fas fa-exclamation-triangle", title: "Defenses", content: "Spines with micro-barbs that embed deeply and are difficult to remove."},
+                        {icon: "fas fa-seedling", title: "Reproduction", content: "Propagates vegetatively when its segments fall and root (jumping cactus)."},
+                        {icon: "fas fa-spa", title: "Flowering", content: "Magenta, yellow or red flowers that attract pollinators in spring."},
+                        {icon: "fas fa-home", title: "Habitat", content: "Forms dense colonies that provide shelter for small desert animals."}
+                    ]
+                },
+                img: "descarga.jfif"
+            }
+        };
+        
+        // Enhanced functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.main-header');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const startTourBtn = document.getElementById('start-tour-btn');
+            const plantCards = document.querySelectorAll('.plant-card');
+            const modals = document.querySelectorAll('.modal');
+            const closeButtons = document.querySelectorAll('.close-modal');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Start tour button - scroll to plants section
+            startTourBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('plants').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Open modal when plant card is clicked
+            plantCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const plantId = this.getAttribute('data-plant');
+                    const modal = document.getElementById(`${plantId}-modal`);
+                    const plant = plantData[plantId];
+                    
+                    if (plant) {
+                        // Populate modal header
+                        modal.querySelector('.modal-header h2').innerHTML = `${plant.name} <span class="scientific-name">(${plant.sciName})</span>`;
+                        
+                        // Set modal image
+                        const modalImg = modal.querySelector('.modal-image img');
+                        modalImg.src = plant.img;
+                        modalImg.alt = plant.name;
+                        
+                        // Populate Spanish content
+                        const esTab = modal.querySelector('#es-' + plantId);
+                        if (esTab) {
+                            esTab.querySelector('h3').textContent = plant.esDesc.title;
+                            esTab.querySelector('.description').innerHTML = `
+                                ${plant.esDesc.content}
+                                <div class="plant-facts">
+                                    ${plant.esDesc.facts.map(fact => `
+                                        <div class="fact-card">
+                                            <h4><i class="${fact.icon}"></i> ${fact.title}</h4>
+                                            <p>${fact.content}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+                        
+                        // Populate English content
+                        const enTab = modal.querySelector('#en-' + plantId);
+                        if (enTab) {
+                            enTab.querySelector('h3').textContent = plant.enDesc.title;
+                            enTab.querySelector('.description').innerHTML = `
+                                ${plant.enDesc.content}
+                                <div class="plant-facts">
+                                    ${plant.enDesc.facts.map(fact => `
+                                        <div class="fact-card">
+                                            <h4><i class="${fact.icon}"></i> ${fact.title}</h4>
+                                            <p>${fact.content}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+                    }
+                    
+                    // Show modal with animation
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    setTimeout(() => {
+                        modal.classList.add('show');
+                    }, 10);
+                });
+            });
+            
+            // Close modal when X is clicked
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    modal.classList.remove('show');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 300);
+                });
+            });
+            
+            // Close modal when clicking outside content
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('show');
+                        setTimeout(() => {
+                            this.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                        }, 300);
+                    }
+                });
+            });
+            
+            // Tab functionality
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    const tabContent = document.getElementById(tabId);
+                    const tabContainer = this.closest('.language-tabs');
+                    
+                    // Remove active class from all buttons and contents in this tab group
+                    tabContainer.querySelectorAll('.tab-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    tabContainer.parentElement.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    tabContent.classList.add('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

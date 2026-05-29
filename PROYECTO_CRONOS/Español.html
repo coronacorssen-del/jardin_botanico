@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardín Botánico Cobach 01 - La Paz, BCS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Aquí conectamos tu archivo CSS externo -->
+    <link rel="stylesheet" href="./Español.css">
+</head>
+<body>
+    <!-- Encabezado (Header) -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="./jardin.jpg" alt="Logo Jardín Botánico">
+            <div class="logo-text">Jardín <span>Botánico</span></div>
+        </div>
+        <nav class="nav-links">
+            <a href="#home">Inicio</a>
+            <a href="#about">Acerca de Nosotros</a>
+            <a href="#plants">Plantas</a>
+            <a href="#visit">Visítanos</a>
+            <a href="#contact">Contacto</a>
+        </nav>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Sección Principal (Hero) -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Jardín Botánico Del Colegio de Bachillerato Plantel 01</h1>
+            <h2 class="hero-subtitle">Descubre cómo es la naturaleza que te rodea</h2>
+            <p class="hero-description">
+                Únete a esta aventura en la cual aprenderás lo hermosa que es toda la naturaleza que existe en La Paz. 
+                Un espacio orientado totalmente a la educación, con la ayuda del Cobach 01.
+            </p>
+            <button class="start-tour-btn" id="start-tour-btn">
+                <i class="fas fa-leaf"></i> Comenzar el viaje
+            </button>
+        </div>
+        <img src="./cactus.avif" alt="Cactus decorativo" class="floating-plants plant-1">
+        <img src="./nopal.jpg" alt="Nopal decorativo" class="floating-plants plant-2">
+    </section>
+
+    <!-- Sección Acerca de Nosotros -->
+    <section class="about-section" id="about">
+        <h2 class="section-title">Acerca de nuestro jardín</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="./jardin.jpg" alt="Jardín Botánico Cobach 01">
+            </div>
+            <div class="about-text">
+                <h3>JARDÍN BOTÁNICO</h3>
+                <p id="parrafo-a-leer">En el corazón del COBACH 01 florece el Jardín Botánico, un espacio concebido no solo para el estudio de la naturaleza, sino para el encuentro profundo con la esencia viva del desierto sudcaliforniano.
+               <br>
+                    Este proyecto educativo nace del deseo de comprender, preservar y honrar la flora nativa de Baja California Sur, resguardando más de 150 especies vegetales que narran, en silencio, la historia de una tierra moldeada por el sol, el viento y la resiliencia.
+                <br>
+                    Cada sendero y cada planta invitan a la contemplación y al aprendizaje, recordándonos que incluso en los paisajes más áridos florece la vida con una belleza serena y extraordinaria.</p>
+                <button id="btn-escuchar">Escuchar párrafo</button>
+
+                <script>
+                    const btnEscuchar = document.getElementById('btn-escuchar');
+                    
+                    // Capturamos el párrafo por su ID
+                    const parrafo = document.getElementById('parrafo-a-leer');
+                
+                    if ('speechSynthesis' in window) {
+                        
+                        btnEscuchar.addEventListener('click', () => {
+                            // Cancelar cualquier reproducción previa activa
+                            window.speechSynthesis.cancel();
+                
+                            // Extraemos el texto limpio del párrafo usando textContent
+                            const textoLimpio = parrafo.textContent.trim();
+                
+                            if (textoLimpio) {
+                                const utterance = new SpeechSynthesisUtterance(textoLimpio);
+                                utterance.lang = 'es-ES'; // Idioma configurado en español
+                                
+                                // Reproducir
+                                window.speechSynthesis.speak(utterance);
+                            }
+                        });
+                
+                    } else {
+                        alert("Tu navegador no soporta la reproducción de voz.");
+                    }
+                </script>
+          
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Plantas -->
+    <section class="plants-section" id="plants">
+        <div class="plants-container">
+            <h2 class="section-title">Nuestras Plantas</h2>
+            <p class="plants-subtitle">Explora la colección botánica del COBACH 01, donde cada planta revela una historia silenciosa de adaptación, fortaleza y vida en el alma del desierto.</p>
+            
+           <div class="plant-grid">
+    <div class="plant-card" data-plant="cardon">
+        <div class="plant-image"><img src="./Cardón.webp" alt="Cardón"></div>
+        <div class="plant-info">
+            <h3>Cardón</h3>
+            <p>El gigante del desierto mexicano</p>
+            <a href="https://es.wikipedia.org/wiki/Pachycereus_pringlei"> <button class="read-more">Más información <i class="fas fa-arrow-right"></i></button></a>
+        </div>
+    </div> 
+    
+    <div class="plant-card" data-plant="viznaga">
+        <div class="plant-image"><img src="./Biznaga.jpg" alt="Biznaga"></div>
+        <div class="plant-info">
+            <h3>Biznaga</h3>
+            <p>Cactus barril dorado</p>
+            <a href="https://es.wikipedia.org/wiki/Ferocactus"> <button class="read-more">Más información <i class="fas fa-arrow-right"></i></button></a>
+        </div>
+    </div>
+
+    <div class="plant-card" data-plant="nopal">
+        <div class="plant-image"><img src="./nopal.jpg" alt="Nopal"></div>
+        <div class="plant-info">
+            <h3>Nopal</h3>
+            <p>La planta que más representa a México</p>
+            <a href="https://es.wikipedia.org/w/index.php?title=Opuntia_ficus-indica&utm_source=chatgpt.com"> <button class="read-more">Más información <i class="fas fa-arrow-right"></i></button></a>
+        </div>
+    </div>
+
+    <div class="plant-card" data-plant="pitahaya">
+        <div class="plant-image"><img src="./pitaya.jpg" alt="Pitahaya Dulce"></div>
+        <div class="plant-info">
+            <h3>Pitahaya Dulce</h3>
+            <p>Cacto del desierto famoso por sus frutos</p>
+            <a href="https://es.wikipedia.org/wiki/Pitahaya?utm_source=chatgpt.com"> <button class="read-more">Más información <i class="fas fa-arrow-right"></i></button></a>
+        </div>
+    </div>
+
+    <div class="plant-card" data-plant="mezquite">
+        <div class="plant-image"><img src="./mezquite.jpg" alt="Mezquite"></div>
+        <div class="plant-info">
+            <h3>Mezquite</h3>
+            <p>Árbol resistente que brinda sombra y vida</p>
+            <a href="https://es.wikipedia.org/wiki/Mezquite?utm_source=chatgpt.com"> <button class="read-more">Más información <i class="fas fa-arrow-right"></i></button></a>
+        </div>
+    </div>
+
+    <div class="plant-card" data-plant="yuca">
+        <div class="plant-image"><img src="./yuca.jpg" alt="Yuca"></div>
+        <div class="plant-info">
+            <h3>Yuca</h3>
+            <p>Planta fuerte y elegante de climas áridos</p>
+            <a href="https://es.wikipedia.org/w/index.php?title=Manihot_esculenta&utm_source=chatgpt.com"> <button class="read-more">Más información <i class="fas fa-arrow-right"></i></button></a>
+        </div>
+    </div>
+
+    <div class="plant-card" data-plant="copal">
+        <div class="plant-image"><img src="./copalblanco.jpg" alt="Copal Blanco"></div>
+        <div class="plant-info">
+            <h3>Copal Blanco</h3>
+            <p>Árbol aromático apreciado por su resina</p>
+            <a href="https://es.wikipedia.org/w/index.php?title=Bursera_copallifera&utm_source=chatgpt.com"> <button class="read-more">Más información <i class="fas fa-arrow-right"></i></button></a>>
+        </div>
+    </div>
+
+    <div class="plant-card" data-plant="choya">
+        <div class="plant-image"><img src="./choya.jpg" alt="Choya"></div>
+        <div class="plant-info">
+            <h3>Choya</h3>
+            <p>Cacto espinoso de gran resistencia</p>
+            <a href="https://es.wikipedia.org/wiki/Cylindropuntia?utm_source=chatgpt.com"> <button class="read-more">Más información <i class="fas fa-arrow-right"></i></button></a>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <!-- Sección Visítanos (Añadida para completar tu código) -->
+    <section class="visit-section" id="visit">
+        <div class="visit-container">
+            <h2 class="visit-title">Visita el Jardín Botánico</h2>
+            <p class="visit-text">Ven a conocer nuestra colección de flora endémica y descubre la belleza del desierto en persona.</p>
+            <div class="visit-info">
+                <div class="info-item"><i class="fas fa-map-marker-alt"></i> Cobach 01, La Paz, BCS</div>
+                <div class="info-item"><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 AM - 2:00 PM</div>
+            </div>
+            <a href="#contact" class="visit-btn">Contáctanos para agendar</a>
+        </div>
+    </section>
+
+    <!-- Pie de página (Footer) -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <div class="footer-logo-text">Jardín <span>Botánico</span></div>
+                </div>
+                <p>Preservando y compartiendo la belleza de la flora sudcaliforniana a través de la educación.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <div class="contact-item"><i class="fas fa-phone"></i> +52 (612) 123 4567</div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> info@cobach01.edu.mx</div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Jardín Botánico Del Cobach 01 - La Paz, BCS. Todos los derechos reservados.</p>
+            <p>Desarrollado por Ortega Beltrán Diego Salvador - Karlos Santiago Meza Gonzalez.</p>
+            <p>Corona Corssen Luis Angel - Cano Nava Gibran - Garcia Mora Jesus Alberto - Marquez Alvarado Cesar Rodrigo</p>
+            <p>Estudiantes del Cobach 01</p>
+        </div>
+    </footer>
+
+    <!-- Ventana Modal para las plantas (Estructura base) -->
+<div class="modal" id="plantModal">
+    <div class="modal-content">
+        <div class="modal-header-detail">
+            <div class="header-text">
+                <h2 id="modalTitle">Viznaga</h2>
+                <p id="modalScientific">(Ferocactus spp.)</p>
+            </div>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-main-image">
+                <img id="modalImg" src="./Biznaga.jpg" alt="Planta">
+            </div>
+
+            <div class="modal-description">
+                <p id="desc1">Las viznagas son cactus de forma globular o cilíndrica conocidos por sus impresionantes espinas coloridas. Son plantas de crecimiento lento que pueden vivir más de 100 años en su hábitat natural.</p>
+                <p id="desc2">Estos cactus tienen una forma distintiva de barril que les da su nombre común. Durante la primavera, producen hermosas flores en forma de corona en la parte superior de la planta.</p>
+            </div>
+
+            <div class="info-cards-container">
+                <div class="info-card">
+                    <div class="card-title">
+                        <i class="fas fa-sun"></i> <h4>Crecimiento</h4>
+                    </div>
+                    <p id="dataCrecimiento">Lento crecimiento, puede tardar 10 años en alcanzar 15 cm de diámetro.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-title">
+                        <i class="fas fa-arrows-alt-v"></i> <h4>Dimensiones</h4>
+                    </div>
+                    <p id="dataDimensiones">Hasta 3 m de altura y 60 cm de diámetro en su madurez.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-title">
+                        <i class="fas fa-leaf"></i> <h4>Floración</h4>
+                    </div>
+                    <p id="dataFloracion">Flores amarillas o rojas que aparecen en primavera y verano.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

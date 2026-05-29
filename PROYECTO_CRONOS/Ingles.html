@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botanical Garden Cobach 01 - La Paz, BCS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External CSS file -->
+    <link rel="stylesheet" href="./Español.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="./jardin.jpg" alt="Botanical Garden Logo">
+            <div class="logo-text">Botanical <span>Garden</span></div>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#plants">Plants</a>
+            <a href="#visit">Visit Us</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Botanical Garden of Colegio de Bachilleres Campus 01</h1>
+
+            <h2 class="hero-subtitle">
+                Discover the nature that surrounds you
+            </h2>
+
+            <p class="hero-description">
+                Join this adventure where you will learn how beautiful all the nature in La Paz truly is.
+                A space fully dedicated to education with the support of Cobach 01.
+            </p>
+
+            <button class="start-tour-btn" id="start-tour-btn">
+                <i class="fas fa-leaf"></i> Start the Journey
+            </button>
+        </div>
+
+        <img src="./cactus.avif" alt="Decorative cactus" class="floating-plants plant-1">
+        <img src="./nopal.jpg" alt="Decorative nopal" class="floating-plants plant-2">
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2 class="section-title">About Our Garden</h2>
+
+        <div class="about-content">
+
+            <div class="about-image">
+                <img src="./jardin.jpg" alt="Botanical Garden Cobach 01">
+            </div>
+
+            <div class="about-text">
+                <h3>BOTANICAL GARDEN</h3>
+
+                <p id="parrafo-a-leer">
+                    In the heart of COBACH 01 blooms the Botanical Garden, a space created not only for the study of nature, but also for a deep encounter with the living essence of the Baja California Sur desert.
+                    <br>
+
+                    This educational project was born from the desire to understand, preserve, and honor the native flora of Baja California Sur, protecting more than 150 plant species that silently tell the story of a land shaped by the sun, the wind, and resilience.
+                    <br>
+
+                    Every pathway and every plant invite visitors to contemplation and learning, reminding us that even in the driest landscapes, life flourishes with serene and extraordinary beauty.
+                </p>
+
+                <button id="btn-escuchar">Listen to Paragraph</button>
+
+                <script>
+                    const btnEscuchar = document.getElementById('btn-escuchar');
+                    const parrafo = document.getElementById('parrafo-a-leer');
+
+                    if ('speechSynthesis' in window) {
+
+                        btnEscuchar.addEventListener('click', () => {
+
+                            window.speechSynthesis.cancel();
+
+                            const textoLimpio = parrafo.textContent.trim();
+
+                            if (textoLimpio) {
+
+                                const utterance = new SpeechSynthesisUtterance(textoLimpio);
+
+                                utterance.lang = 'en-US';
+
+                                window.speechSynthesis.speak(utterance);
+                            }
+                        });
+
+                    } else {
+
+                        alert("Your browser does not support speech synthesis.");
+
+                    }
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plants Section -->
+    <section class="plants-section" id="plants">
+
+        <div class="plants-container">
+
+            <h2 class="section-title">Our Plants</h2>
+
+            <p class="plants-subtitle">
+                Explore the botanical collection of COBACH 01, where every plant reveals a silent story of adaptation, strength, and life in the soul of the desert.
+            </p>
+
+            <div class="plant-grid">
+
+                <div class="plant-card" data-plant="cardon">
+                    <div class="plant-image">
+                        <img src="./Cardón.webp" alt="Cardon">
+                    </div>
+
+                    <div class="plant-info">
+                        <h3>Cardon</h3>
+                        <p>The giant of the Mexican desert</p>
+
+                        <a href="https://en.wikipedia.org/wiki/Pachycereus_pringlei">
+                            <button class="read-more">
+                                More Information
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="plant-card" data-plant="viznaga">
+                    <div class="plant-image">
+                        <img src="./Biznaga.jpg" alt="Biznaga">
+                    </div>
+
+                    <div class="plant-info">
+                        <h3>Biznaga</h3>
+                        <p>Golden barrel cactus</p>
+
+                        <a href="https://en.wikipedia.org/wiki/Ferocactus">
+                            <button class="read-more">
+                                More Information
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="plant-card" data-plant="nopal">
+                    <div class="plant-image">
+                        <img src="./nopal.jpg" alt="Nopal">
+                    </div>
+
+                    <div class="plant-info">
+                        <h3>Nopal</h3>
+                        <p>The plant that best represents Mexico</p>
+
+                        <a href="https://en.wikipedia.org/wiki/Opuntia_ficus-indica">
+                            <button class="read-more">
+                                More Information
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="plant-card" data-plant="pitahaya">
+                    <div class="plant-image">
+                        <img src="./pitaya.jpg" alt="Sweet Pitahaya">
+                    </div>
+
+                    <div class="plant-info">
+                        <h3>Sweet Pitahaya</h3>
+                        <p>Desert cactus famous for its fruits</p>
+
+                        <a href="https://en.wikipedia.org/wiki/Pitaya">
+                            <button class="read-more">
+                                More Information
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="plant-card" data-plant="mezquite">
+                    <div class="plant-image">
+                        <img src="./mezquite.jpg" alt="Mesquite">
+                    </div>
+
+                    <div class="plant-info">
+                        <h3>Mesquite</h3>
+                        <p>Resilient tree that provides shade and life</p>
+
+                        <a href="https://en.wikipedia.org/wiki/Prosopis">
+                            <button class="read-more">
+                                More Information
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="plant-card" data-plant="yuca">
+                    <div class="plant-image">
+                        <img src="./yuca.jpg" alt="Yucca">
+                    </div>
+
+                    <div class="plant-info">
+                        <h3>Yucca</h3>
+                        <p>Strong and elegant plant from arid climates</p>
+
+                        <a href="https://en.wikipedia.org/wiki/Yucca">
+                            <button class="read-more">
+                                More Information
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="plant-card" data-plant="copal">
+                    <div class="plant-image">
+                        <img src="./copalblanco.jpg" alt="White Copal">
+                    </div>
+
+                    <div class="plant-info">
+                        <h3>White Copal</h3>
+                        <p>Aromatic tree valued for its resin</p>
+
+                        <a href="https://en.wikipedia.org/wiki/Bursera">
+                            <button class="read-more">
+                                More Information
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="plant-card" data-plant="choya">
+                    <div class="plant-image">
+                        <img src="./choya.jpg" alt="Cholla">
+                    </div>
+
+                    <div class="plant-info">
+                        <h3>Cholla</h3>
+                        <p>Highly resistant spiny cactus</p>
+
+                        <a href="https://en.wikipedia.org/wiki/Cylindropuntia">
+                            <button class="read-more">
+                                More Information
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
